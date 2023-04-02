@@ -6,9 +6,10 @@ class TicTacToePrototype extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
+      body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.all(20),
         child: const _ColumnListViewComponent(),
       ),
     );
@@ -61,7 +62,7 @@ class _SingleBoxComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width / 3.2,
     );
   }
 }
