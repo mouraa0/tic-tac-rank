@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_rank_app/core/presenter/view/tic_tac_toe/tic_tac_toe_prototype.dart';
+import 'package:tic_tac_rank_app/core/presenter/tic_tac_toe/view/tic_tac_toe_prototype.dart';
 
 void main() {
   runApp(const MyApp());
