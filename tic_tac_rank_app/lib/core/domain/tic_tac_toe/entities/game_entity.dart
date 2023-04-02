@@ -15,7 +15,7 @@ class GameEntity {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
 
   void changeCurrentPlayer() {
-    if (currentPlayer.id == player1.id) {
+    if (currentPlayer == player1) {
       currentPlayer = player2;
       return;
     }
