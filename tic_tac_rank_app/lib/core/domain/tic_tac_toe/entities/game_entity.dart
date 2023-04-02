@@ -28,6 +28,11 @@ class GameEntity {
     required int y,
   }) {
     board[x][y] = currentPlayer.symbol;
+
+    if (isGameOver()) {
+      return resetBoard();
+    }
+
     changeCurrentPlayer();
   }
 

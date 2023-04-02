@@ -1,5 +1,5 @@
 class PlayerEntity {
-  final String id;
+  final int id;
   final String name;
   final String image;
   final String symbol;
