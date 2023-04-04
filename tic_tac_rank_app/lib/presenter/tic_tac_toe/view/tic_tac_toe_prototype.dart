@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_rank_app/core/domain/tic_tac_toe/entities/game_entity.dart';
-import 'package:tic_tac_rank_app/core/domain/tic_tac_toe/entities/player_entity.dart';
+import 'package:tic_tac_rank_app/domain/tic_tac_toe/entities/game_entity.dart';
+import 'package:tic_tac_rank_app/domain/tic_tac_toe/entities/player_entity.dart';
 
 class TicTacToePrototype extends StatefulWidget {
   const TicTacToePrototype({super.key});

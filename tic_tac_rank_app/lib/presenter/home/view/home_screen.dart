@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:tic_tac_rank_app/core/routes/page_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +13,7 @@ class HomeScreen extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () => Get.toNamed(PageRouter.matchmakingScreen),
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: Colors.white,

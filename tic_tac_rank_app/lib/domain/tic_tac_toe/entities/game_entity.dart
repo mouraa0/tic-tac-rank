@@ -1,4 +1,4 @@
-import 'package:tic_tac_rank_app/core/domain/tic_tac_toe/entities/player_entity.dart';
+import 'package:tic_tac_rank_app/domain/tic_tac_toe/entities/player_entity.dart';
 
 class GameEntity {
   final PlayerEntity player1;
