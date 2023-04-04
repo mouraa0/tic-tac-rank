@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_rank_app/core/presenter/home/view/home_screen.dart';
 import 'package:tic_tac_rank_app/core/presenter/tic_tac_toe/view/tic_tac_toe_prototype.dart';
 
 void main() {
@@ -9,12 +10,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const TicTacToePrototype(),
+      home: HomeScreen(),
     );
   }
 }
