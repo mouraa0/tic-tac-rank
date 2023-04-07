@@ -6,7 +6,7 @@ import 'package:tic_tac_rank_app/presenter/tic_tac_toe/view/tic_tac_toe_prototyp
 class PageRouter {
   static String homeScreen = '/';
   static String matchmakingScreen = '/matchmaking';
-  static String matchScreen = '/match';
+  static String matchScreen = '/match/:roomId';
 
   static returnPages() {
     return [
