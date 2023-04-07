@@ -1,5 +1,8 @@
-import { MatchmakingHandlerParams, WaitingRoom } from "./interfaces.ts";
 import { randomNumber } from "https://deno.land/x/random_number@2.0.0/mod.ts";
+import {
+  MatchmakingHandlerParams,
+  WaitingRoom,
+} from "../interfaces/interfaces.ts";
 
 export const matchmakingHandler = (
   { socket, waitingRoomsArr, gameRoomsArr, userId }: MatchmakingHandlerParams,

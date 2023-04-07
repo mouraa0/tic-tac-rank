@@ -1,6 +1,6 @@
 import { RouterContext } from "https://deno.land/x/oak@v12.1.0/router.ts";
-import { matchmakingHandler } from "../matchmaking_handler.ts";
-import { GameRoom, WaitingRoom } from "../interfaces.ts";
+import { GameRoom, WaitingRoom } from "../interfaces/interfaces.ts";
+import { matchmakingHandler } from "../handlers/matchmaking_handler.ts";
 
 const gameRoomsArr: GameRoom[] = [];
 
