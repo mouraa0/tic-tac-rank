@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:tic_tac_rank_app/presenter/matchmaking/controller/matchmaking_controller.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class MatchmakingScreen extends StatefulWidget {
@@ -21,21 +20,23 @@ class _MatchmakingScreenState extends State<MatchmakingScreen> {
     super.dispose();
   }
 
+  final _controller = MatchmakingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
         stream: _channel.stream,
         builder: (context, snapshot) {
-          if (snapshot.data != null) print(jsonDecode(snapshot.data)['msg']);
+          _controller.handleSnapshotReceive(snapshot);
 
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(color: Colors.black),
-                SizedBox(height: 20),
-                Text(snapshot.data ?? ''),
+                const CircularProgressIndicator(color: Colors.black),
+                const SizedBox(height: 20),
+                Text(_controller.mostRecentData?.msg ?? ''),
               ],
             ),
           );

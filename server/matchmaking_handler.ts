@@ -26,8 +26,6 @@ const joinFirstPossibleRoom = (
 ) => {
   const opponentWaitingRoom: WaitingRoom = waitingRoomsArr[0];
 
-  socket.send("match found");
-
   waitingRoomsArr.shift();
 
   gameRoomsArr.push({
@@ -43,11 +41,11 @@ const joinFirstPossibleRoom = (
   });
 
   opponentWaitingRoom.playerSocket.send(
-    `{"roomId": "${opponentWaitingRoom.roomId}", "status": "Found match"}`,
+    `{"room_id": "${opponentWaitingRoom.roomId}", "status": "Found match", "msg": "Found match"}`,
   );
 
   socket.send(
-    `{"roomId": "${opponentWaitingRoom.roomId}", status: "Found match"}`,
+    `{"room_id": "${opponentWaitingRoom.roomId}", status: "Found match", "msg": "Found match"}`,
   );
 
   return socket.close();
@@ -68,5 +66,11 @@ const createRoom = (
 
   waitingRoomsArr.push(waitingRoom);
 
-  socket.send(`{"msg": "In waiting room", "roomId": "${roomId}"}`);
+  socket.send(
+    JSON.stringify({
+      msg: "In waiting room",
+      room_id: roomId,
+      status: "waiting",
+    }),
+  );
 };
