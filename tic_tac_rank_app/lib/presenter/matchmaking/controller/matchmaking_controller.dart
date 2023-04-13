@@ -14,9 +14,7 @@ class MatchmakingController extends GetxController {
   MatchmakingMessageEntity? mostRecentData;
 
   void handleSnapshotReceive(AsyncSnapshot<dynamic> snapshot) {
-    if (snapshot.data == null) {
-      return;
-    }
+    if (snapshot.data == null) return;
 
     mostRecentData =
         MatchmakingMessageModel.fromJson(jsonDecode(snapshot.data));

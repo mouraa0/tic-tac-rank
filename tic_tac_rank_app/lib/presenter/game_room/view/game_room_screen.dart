@@ -11,24 +11,26 @@ class MatchScreen extends StatelessWidget {
     final controller = Get.find<GameRoomController>();
 
     return Scaffold(
-      body: StreamBuilder(
-        stream: controller.channel.stream,
-        builder: (context, snapshot) {
-          controller.getNewSnapshot(snapshot);
+      body: Obx(
+        () => StreamBuilder(
+          stream: controller.channel.value?.stream,
+          builder: (context, snapshot) {
+            controller.handleSnapshotReceive(snapshot);
 
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                const BoardComponent(),
-                const SizedBox(height: 100),
-                Obx(() => Text(controller.actualPlayerToken.value)),
-              ],
-            ),
-          );
-        },
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  const BoardComponent(),
+                  const SizedBox(height: 100),
+                  Text(controller.actualPlayerToken.value),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
