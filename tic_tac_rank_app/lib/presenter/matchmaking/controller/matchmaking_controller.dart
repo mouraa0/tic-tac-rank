@@ -13,19 +13,20 @@ class MatchmakingController extends GetxController {
 
   MatchmakingMessageEntity? mostRecentData;
 
-  void handleSnapshotReceive(AsyncSnapshot<dynamic> snapshot) {
+  void handleSnapshotReceive(AsyncSnapshot<dynamic> snapshot) async {
     if (snapshot.data == null) return;
 
     mostRecentData =
         MatchmakingMessageModel.fromJson(jsonDecode(snapshot.data));
 
     if (mostRecentData!.msg == 'Found match') {
-      return _goToMatchScreen();
+      return await _goToMatchScreen();
     }
   }
 
-  void _goToMatchScreen() {
-    Get.toNamed('${AppRouter.matchScreen}/${mostRecentData!.roomId}');
+  Future<void> _goToMatchScreen() async {
+    return await Get.toNamed(
+        '${AppRouter.matchScreen}/${mostRecentData!.roomId}');
   }
 
   @override

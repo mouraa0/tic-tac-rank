@@ -15,7 +15,6 @@ export const matchmakingCb = (ctx: RouterContext<"/matchmaking/:userId">) => {
 
   socket.onopen = () => {
     console.log("WebSocket connection established");
-    socket.send("WebSocket connection established");
 
     matchmakingHandler({
       gameRoomsMap: gameRoomsMap,

@@ -24,7 +24,7 @@ class AppRouter {
       ),
       GetPage(
         name: matchConfigRoute,
-        page: () => const MatchScreen(),
+        page: () => const GameRoomScreen(),
         binding: GameRoomBindings(),
       ),
     ];
