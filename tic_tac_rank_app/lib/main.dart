@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tic_tac_rank_app/core/routes/page_router.dart';
+import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tic Tac Rank!',
       initialRoute: '/',
-      getPages: PageRouter.returnPages(),
+      getPages: AppRouter.returnPages(),
     );
   }
 }
