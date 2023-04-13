@@ -2,16 +2,16 @@ import { randomNumber } from "https://deno.land/x/random_number@2.0.0/mod.ts";
 import {
   MatchmakingHandlerParams,
   WaitingRoom,
-} from "../interfaces/interfaces.ts";
+} from "../../../interfaces/interfaces.ts";
 
 export const matchmakingHandler = (
-  { socket, waitingRoomsArr, gameRoomsArr, userId }: MatchmakingHandlerParams,
+  { socket, waitingRoomsArr, gameRoomsMap, userId }: MatchmakingHandlerParams,
 ): void => {
   if (waitingRoomsArr.length !== 0) {
     return joinFirstPossibleRoom({
       socket: socket,
       waitingRoomsArr: waitingRoomsArr,
-      gameRoomsArr: gameRoomsArr,
+      gameRoomsMap: gameRoomsMap,
       userId: userId,
     });
   }
@@ -20,35 +20,49 @@ export const matchmakingHandler = (
     socket: socket,
     waitingRoomsArr: waitingRoomsArr,
     userId: userId,
-    gameRoomsArr: gameRoomsArr,
+    gameRoomsMap: gameRoomsMap,
   });
 };
 
 const joinFirstPossibleRoom = (
-  { socket, waitingRoomsArr, gameRoomsArr, userId }: MatchmakingHandlerParams,
+  { socket, waitingRoomsArr, gameRoomsMap, userId }: MatchmakingHandlerParams,
 ) => {
   const opponentWaitingRoom: WaitingRoom = waitingRoomsArr[0];
 
   waitingRoomsArr.shift();
 
-  gameRoomsArr.push({
+  gameRoomsMap[opponentWaitingRoom.roomId] = {
     board: Array.from(
       { length: 3 },
       (_, __) => Array.from({ length: 3 }, (_, __) => ""),
     ),
+    socketsArr: [],
     player1Id: opponentWaitingRoom.playerId,
-    player1Socket: opponentWaitingRoom.playerSocket,
+    isPlayer1Connected: false,
+    player1Socket: null,
     player2Id: userId,
-    player2Socket: socket,
+    isPlayer2Connected: false,
+    player2Socket: null,
     roomId: opponentWaitingRoom.roomId,
-  });
+    playerTurn: "p1",
+  };
 
   opponentWaitingRoom.playerSocket.send(
-    `{"room_id": "${opponentWaitingRoom.roomId}", "status": "Found match", "msg": "Found match"}`,
+    JSON.stringify({
+      room_id: opponentWaitingRoom.roomId,
+      status: 4003,
+      msg: "Found match",
+    }),
   );
 
+  opponentWaitingRoom.playerSocket.close();
+
   socket.send(
-    `{"room_id": "${opponentWaitingRoom.roomId}", status: "Found match", "msg": "Found match"}`,
+    JSON.stringify({
+      room_id: opponentWaitingRoom.roomId,
+      status: 4003,
+      msg: "Found match",
+    }),
   );
 
   return socket.close();
@@ -73,7 +87,7 @@ const createRoom = (
     JSON.stringify({
       msg: "In waiting room",
       room_id: roomId,
-      status: "waiting",
+      status: 4003,
     }),
   );
 };
