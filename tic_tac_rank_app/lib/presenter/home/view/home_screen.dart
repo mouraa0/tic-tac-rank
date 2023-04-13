@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
+import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,17 +13,9 @@ class HomeScreen extends StatelessWidget {
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ElevatedButton(
+          child: AppButton(
+            title: 'Find Match',
             onPressed: () => Get.toNamed(AppRouter.matchmakingScreen),
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: Colors.white,
-              side: const BorderSide(color: Colors.black),
-            ),
-            child: const Text(
-              'Find Match',
-              style: TextStyle(color: Colors.black),
-            ),
           ),
         ),
       ),
