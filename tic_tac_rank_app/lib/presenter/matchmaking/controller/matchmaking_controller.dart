@@ -20,13 +20,17 @@ class MatchmakingController extends GetxController {
         MatchmakingMessageModel.fromJson(jsonDecode(snapshot.data));
 
     if (mostRecentData!.msg == 'Found match') {
-      return await _goToMatchScreen();
+      return _goToMatchScreen();
     }
   }
 
-  Future<void> _goToMatchScreen() async {
-    return await Get.toNamed(
-        '${AppRouter.matchScreen}/${mostRecentData!.roomId}');
+  void _goToMatchScreen() {
+    Future.delayed(
+      Duration.zero,
+      () => Get.toNamed(
+        '${AppRouter.matchScreen}/${mostRecentData!.roomId}',
+      ),
+    );
   }
 
   @override

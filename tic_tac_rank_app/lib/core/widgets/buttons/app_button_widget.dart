@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   final String title;
-  final Function? onPressed;
+  final Function()? onPressed;
 
   const AppButton({
     Key? key,
@@ -13,7 +13,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => onPressed,
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: Colors.white,

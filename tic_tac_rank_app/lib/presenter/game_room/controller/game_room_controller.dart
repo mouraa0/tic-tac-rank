@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/data/game_room/models/game_room_message_model.dart';
 import 'package:tic_tac_rank_app/domain/game_room/game_room_message_entity.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -17,14 +15,16 @@ class GameRoomController extends GetxController {
 
   RxBool isMyTurn = false.obs;
 
+  RxBool isGameEnded = false.obs;
+
   RxString actualPlayerToken = ''.obs;
 
   String myPlayerToken = '';
 
-  void handleSnapshotReceive(AsyncSnapshot<dynamic> snapshot) {
-    if (snapshot.data == null) return;
+  void _handleEventReceive(dynamic event) {
+    if (event == null) return;
 
-    msgEntity = GameRoomMessageModel.fromJson(jsonDecode(snapshot.data));
+    msgEntity = GameRoomMessageModel.fromJson(jsonDecode(event));
 
     _handleNewMessage(msgEntity.msg);
   }
@@ -43,8 +43,6 @@ class GameRoomController extends GetxController {
   }
 
   void _handleNewMessage(String msg) {
-    print('msg: $msg');
-
     switch (msg) {
       case 'All players connected':
         channel.value?.sink.add(
@@ -58,12 +56,10 @@ class GameRoomController extends GetxController {
         return;
 
       case 'Game Live':
-        _handleNextPlay();
-        return;
+        return _handleNextPlay();
 
       case 'Game Ended':
-        _handleGameEnded();
-        return;
+        return _handleGameEnded();
     }
   }
 
@@ -74,7 +70,9 @@ class GameRoomController extends GetxController {
   }
 
   void _handleGameEnded() {
-    Get.toNamed(AppRouter.homeScreen);
+    channel.value?.sink.close();
+    isMyTurn.value = false;
+    isGameEnded.value = true;
   }
 
   @override
@@ -88,6 +86,10 @@ class GameRoomController extends GetxController {
     channel.value = WebSocketChannel.connect(
       Uri.parse('$url/$roomId'),
     );
+
+    channel.value?.stream.listen((event) {
+      return _handleEventReceive(event);
+    });
   }
 
   @override
