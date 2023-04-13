@@ -27,7 +27,7 @@ class GameRoomScreen extends StatelessWidget {
                 visible: controller.isGameEnded.value,
                 child: AppButton(
                   title: 'Home',
-                  onPressed: () => Get.toNamed(AppRouter.homeScreen),
+                  onPressed: () => Get.offAndToNamed(AppRouter.homeScreen),
                 ),
               )
             ],

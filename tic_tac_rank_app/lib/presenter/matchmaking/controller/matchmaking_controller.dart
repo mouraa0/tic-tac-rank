@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -9,15 +10,19 @@ import 'package:tic_tac_rank_app/domain/matchmaking/entities/matchmaking_message
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class MatchmakingController extends GetxController {
-  final channel = Rxn<WebSocketChannel>();
+  late Stream stream;
+  late WebSocketChannel channel;
+
+  RxString screenMsg = ''.obs;
 
   MatchmakingMessageEntity? mostRecentData;
 
-  void handleSnapshotReceive(AsyncSnapshot<dynamic> snapshot) async {
-    if (snapshot.data == null) return;
+  void _handleEventReceive(dynamic event) async {
+    if (event == null) return;
 
-    mostRecentData =
-        MatchmakingMessageModel.fromJson(jsonDecode(snapshot.data));
+    mostRecentData = MatchmakingMessageModel.fromJson(jsonDecode(event));
+
+    screenMsg.value = mostRecentData!.msg;
 
     if (mostRecentData!.msg == 'Found match') {
       return _goToMatchScreen();
@@ -27,7 +32,7 @@ class MatchmakingController extends GetxController {
   void _goToMatchScreen() {
     Future.delayed(
       Duration.zero,
-      () => Get.toNamed(
+      () => Get.offAndToNamed(
         '${AppRouter.matchScreen}/${mostRecentData!.roomId}',
       ),
     );
@@ -39,12 +44,15 @@ class MatchmakingController extends GetxController {
     const String url = !kIsWeb
         ? 'ws://10.0.2.2:8000/matchmaking/122'
         : 'ws://localhost:8000/matchmaking/121';
-    channel.value = WebSocketChannel.connect(Uri.parse(url));
+
+    channel = WebSocketChannel.connect(Uri.parse(url));
+
+    channel.stream.listen((event) => _handleEventReceive(event));
   }
 
   @override
   void dispose() {
-    channel.value?.sink.close();
+    channel.sink.close();
     super.dispose();
   }
 }

@@ -10,23 +10,14 @@ class MatchmakingScreen extends StatelessWidget {
     final controller = Get.find<MatchmakingController>();
 
     return Scaffold(
-      body: Obx(
-        () => StreamBuilder(
-          stream: controller.channel.value?.stream,
-          builder: (context, snapshot) {
-            controller.handleSnapshotReceive(snapshot);
-
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CircularProgressIndicator(color: Colors.black),
-                  const SizedBox(height: 20),
-                  Text(controller.mostRecentData?.msg ?? ''),
-                ],
-              ),
-            );
-          },
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const CircularProgressIndicator(color: Colors.black),
+            const SizedBox(height: 20),
+            Obx(() => Text(controller.screenMsg.value)),
+          ],
         ),
       ),
     );
