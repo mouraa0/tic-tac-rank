@@ -1,9 +1,9 @@
-class MatchmakingSnapshotEntity {
+class MatchmakingMessageEntity {
   final String msg;
-  final String status;
+  final int status;
   final String? roomId;
 
-  MatchmakingSnapshotEntity({
+  MatchmakingMessageEntity({
     required this.msg,
     required this.status,
     this.roomId,
