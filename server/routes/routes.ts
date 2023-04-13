@@ -1,5 +1,6 @@
 import { Router } from "https://deno.land/x/oak@v12.1.0/mod.ts";
-import { matchmakingCb } from "./route_callbacks.ts";
+import { matchmakingCb } from "../routeCallbacks/matchmaking/matchmakingCallback.ts";
+import { matchCb } from "../routeCallbacks/match/matchCallback.ts";
 
 export const router: Router = new Router();
 router.get("/", (ctx) => {
@@ -7,3 +8,5 @@ router.get("/", (ctx) => {
 });
 
 router.get("/matchmaking/:userId", matchmakingCb);
+
+router.get("/match/:userId/:roomId", matchCb);
