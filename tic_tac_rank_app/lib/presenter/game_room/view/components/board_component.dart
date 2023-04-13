@@ -69,7 +69,7 @@ class _SingleBoxComponent extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 3.2,
           height: 50,
           child: Center(
-            child: Text(_controller.board[colIndex][rowIndex]),
+            child: Text(_controller.board?[colIndex][rowIndex] ?? ''),
           ),
         ),
       ),

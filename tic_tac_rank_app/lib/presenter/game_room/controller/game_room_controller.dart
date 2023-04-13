@@ -9,11 +9,11 @@ import 'package:tic_tac_rank_app/domain/game_room/game_room_message_entity.dart'
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class GameRoomController extends GetxController {
-  late WebSocketChannel channel;
+  final channel = Rxn<WebSocketChannel>();
 
   late GameRoomMessageEntity msgEntity;
 
-  List<dynamic> board = [[]];
+  List<dynamic>? board;
 
   RxBool isMyTurn = false.obs;
 
@@ -21,7 +21,7 @@ class GameRoomController extends GetxController {
 
   String myPlayerToken = '';
 
-  void getNewSnapshot(AsyncSnapshot<dynamic> snapshot) {
+  void handleSnapshotReceive(AsyncSnapshot<dynamic> snapshot) {
     if (snapshot.data == null) return;
 
     msgEntity = GameRoomMessageModel.fromJson(jsonDecode(snapshot.data));
@@ -33,9 +33,9 @@ class GameRoomController extends GetxController {
     required int rowIndex,
     required int colIndex,
   }) {
-    board[colIndex][rowIndex] = myPlayerToken;
+    board?[colIndex][rowIndex] = myPlayerToken;
 
-    channel.sink.add(jsonEncode({
+    channel.value?.sink.add(jsonEncode({
       'msg': 'made_play',
       'board': board,
       'status': 4003,
@@ -43,9 +43,11 @@ class GameRoomController extends GetxController {
   }
 
   void _handleNewMessage(String msg) {
+    print('msg: $msg');
+
     switch (msg) {
       case 'All players connected':
-        channel.sink.add(
+        channel.value?.sink.add(
           jsonEncode({
             'msg': 'Ready',
             'board': [[]],
@@ -83,14 +85,14 @@ class GameRoomController extends GetxController {
         ? 'ws://10.0.2.2:8000/match/122'
         : 'ws://localhost:8000/match/121';
 
-    channel = WebSocketChannel.connect(
+    channel.value = WebSocketChannel.connect(
       Uri.parse('$url/$roomId'),
     );
   }
 
   @override
   void dispose() {
-    channel.sink.close();
+    channel.value?.sink.close();
     super.dispose();
   }
 }
