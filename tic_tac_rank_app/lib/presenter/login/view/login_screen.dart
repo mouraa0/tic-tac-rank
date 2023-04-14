@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_big_widget.dart';
+import 'package:tic_tac_rank_app/core/widgets/forms_title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
 import 'package:tic_tac_rank_app/presenter/login/view/components/other_options_component.dart';
 
@@ -20,7 +21,10 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: const [
               Spacer(flex: 1),
-              _TitlesComponent(),
+              AppFormsTitleWidget(
+                title: 'LOGIN',
+                subtitle: 'Enter your credentials to continue.',
+              ),
               Spacer(flex: 2),
               _TextFieldAreaComponent(),
               SizedBox(height: 20),
@@ -94,30 +98,6 @@ class _DividerComponent extends StatelessWidget {
         Text('or', style: AppTextStyles.details),
         const SizedBox(width: 10),
         const Expanded(child: Divider(color: Colors.grey)),
-      ],
-    );
-  }
-}
-
-class _TitlesComponent extends StatelessWidget {
-  const _TitlesComponent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('LOGIN', style: AppTextStyles.pageTitle),
-        const SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Text(
-            'Enter your credentials to continue.',
-            textAlign: TextAlign.center,
-            style: AppTextStyles.pageSubtitle,
-          ),
-        ),
       ],
     );
   }
