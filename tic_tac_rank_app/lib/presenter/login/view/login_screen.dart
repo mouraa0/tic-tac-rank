@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_big_widget.dart';
-import 'package:tic_tac_rank_app/core/widgets/forms_title/forms_title_widget.dart';
+import 'package:tic_tac_rank_app/core/widgets/forms/text_span/forms_text_span_widget.dart';
+import 'package:tic_tac_rank_app/core/widgets/forms/title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
 import 'package:tic_tac_rank_app/presenter/login/view/components/other_options_component.dart';
 
@@ -19,47 +20,27 @@ class LoginScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.all(30),
           child: Column(
-            children: const [
-              Spacer(flex: 1),
-              AppFormsTitleWidget(
+            children: [
+              const Spacer(flex: 1),
+              const AppFormsTitleWidget(
                 title: 'LOGIN',
                 subtitle: 'Enter your credentials to continue.',
               ),
-              Spacer(flex: 2),
-              _TextFieldAreaComponent(),
-              SizedBox(height: 20),
-              _DividerComponent(),
-              SizedBox(height: 20),
-              OtherOptionsComponent(),
-              Spacer(flex: 1),
-              _DontHaveAccountComponent(),
+              const Spacer(flex: 2),
+              const _TextFieldAreaComponent(),
+              const SizedBox(height: 20),
+              const _DividerComponent(),
+              const SizedBox(height: 20),
+              const OtherOptionsComponent(),
+              const Spacer(flex: 1),
+              AppFormsTextSpanWidget(
+                infoText: "Don't Have an Account? ",
+                clickableText: 'Register now!',
+                onTap: () => Get.offAndToNamed(AppRouter.registerScreen),
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _DontHaveAccountComponent extends StatelessWidget {
-  const _DontHaveAccountComponent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: "Don't Have an Account? ",
-        style: AppTextStyles.textSpan,
-        children: [
-          TextSpan(
-            text: 'Register now!',
-            style: AppTextStyles.textSpanButton,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => Get.offAndToNamed(AppRouter.registerScreen),
-          ),
-        ],
       ),
     );
   }
