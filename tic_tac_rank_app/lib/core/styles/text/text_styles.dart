@@ -38,4 +38,10 @@ class AppTextStyles {
     fontSize: 14,
     decoration: TextDecoration.underline,
   );
+
+  static TextStyle buttonExternalAccount = const TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
 }
