@@ -11,7 +11,7 @@ class GameRoomController extends GetxController {
 
   late GameRoomMessageEntity msgEntity;
 
-  List<dynamic>? board;
+  RxList<dynamic>? board;
 
   RxBool isMyTurn = false.obs;
 
@@ -43,6 +43,8 @@ class GameRoomController extends GetxController {
   }
 
   void _handleNewMessage(String msg) {
+    print('msg: $msg');
+
     switch (msg) {
       case 'All players connected':
         channel.value?.sink.add(
@@ -64,7 +66,7 @@ class GameRoomController extends GetxController {
   }
 
   void _handleNextPlay() {
-    board = msgEntity.board!;
+    board = msgEntity.board!.obs;
     isMyTurn.value = msgEntity.playerTurn == myPlayerToken;
     actualPlayerToken.value = msgEntity.playerTurn!;
   }
@@ -73,6 +75,13 @@ class GameRoomController extends GetxController {
     channel.value?.sink.close();
     isMyTurn.value = false;
     isGameEnded.value = true;
+  }
+
+  @override
+  void onClose() {
+    channel.value?.sink.close();
+    board = null;
+    super.onClose();
   }
 
   @override
@@ -94,7 +103,8 @@ class GameRoomController extends GetxController {
 
   @override
   void dispose() {
-    channel.value?.sink.close();
     super.dispose();
+    channel.value?.sink.close();
+    board = null;
   }
 }
