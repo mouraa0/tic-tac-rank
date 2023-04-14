@@ -1,9 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_big_widget.dart';
+import 'package:tic_tac_rank_app/core/widgets/forms/divider/forms_divider_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/forms/text_span/forms_text_span_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/forms/title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
               const Spacer(flex: 2),
               const _TextFieldAreaComponent(),
               const SizedBox(height: 20),
-              const _DividerComponent(),
+              const AppFormsDividerWidget(),
               const SizedBox(height: 20),
               const OtherOptionsComponent(),
               const Spacer(flex: 1),
