@@ -3,12 +3,14 @@ import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 
 class AppButtonBigWidget extends StatelessWidget {
   final String title;
+  final bool isLoading;
   final Function()? onPressed;
 
   const AppButtonBigWidget({
     Key? key,
     required this.title,
     required this.onPressed,
+    required this.isLoading,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,9 @@ class AppButtonBigWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: Text(title, style: AppTextStyles.buttonBig),
+        child: isLoading
+            ? const CircularProgressIndicator(color: Colors.white)
+            : Text(title, style: AppTextStyles.buttonBig),
       ),
     );
   }

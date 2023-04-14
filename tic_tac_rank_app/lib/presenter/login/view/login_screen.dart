@@ -59,7 +59,11 @@ class _TextFieldAreaComponent extends StatelessWidget {
         SizedBox(height: 10),
         AppTextFieldWidget(label: 'password'),
         SizedBox(height: 20),
-        AppButtonBigWidget(onPressed: null, title: 'login'),
+        AppButtonBigWidget(
+          onPressed: null,
+          title: 'login',
+          isLoading: false,
+        ),
       ],
     );
   }

@@ -6,6 +6,7 @@ import 'package:tic_tac_rank_app/presenter/home/view/home_screen.dart';
 import 'package:tic_tac_rank_app/presenter/login/view/login_screen.dart';
 import 'package:tic_tac_rank_app/presenter/matchmaking/binder/matchmaking_bindings.dart';
 import 'package:tic_tac_rank_app/presenter/matchmaking/view/matchmaking_screen.dart';
+import 'package:tic_tac_rank_app/presenter/register/binder/register_binding.dart';
 import 'package:tic_tac_rank_app/presenter/register/view/register_screen.dart';
 import 'package:tic_tac_rank_app/presenter/splash/view/splash_screen.dart';
 
@@ -31,6 +32,7 @@ class AppRouter {
       GetPage(
         name: registerScreen,
         page: () => const RegisterScreen(),
+        binding: RegisterBinding(),
       ),
       GetPage(
         name: homeScreen,
@@ -39,12 +41,12 @@ class AppRouter {
       GetPage(
         name: matchmakingScreen,
         page: () => const MatchmakingScreen(),
-        binding: MatchmakingBindings(),
+        binding: MatchmakingBinding(),
       ),
       GetPage(
         name: matchConfigRoute,
         page: () => const GameRoomScreen(),
-        binding: GameRoomBindings(),
+        binding: GameRoomBinding(),
       ),
     ];
   }

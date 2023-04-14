@@ -7,6 +7,9 @@ import 'package:tic_tac_rank_app/core/widgets/forms/external_accounts_options/fo
 import 'package:tic_tac_rank_app/core/widgets/forms/text_span/forms_text_span_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/forms/title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
+import 'package:tic_tac_rank_app/presenter/register/controller/register_controller.dart';
+
+final _controller = Get.find<RegisterController>();
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -53,18 +56,37 @@ class _TextFieldAreaComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        AppTextFieldWidget(label: 'email'),
-        SizedBox(height: 10),
-        AppTextFieldWidget(label: 'username'),
-        SizedBox(height: 10),
-        AppTextFieldWidget(label: 'password'),
-        SizedBox(height: 10),
-        AppTextFieldWidget(label: 'repeat password'),
-        SizedBox(height: 20),
-        AppButtonBigWidget(onPressed: null, title: 'register'),
-      ],
+    return Obx(
+      () => Column(
+        children: [
+          AppTextFieldWidget(
+            label: 'email',
+            onChanged: (str) => _controller.onChangedEmail(str),
+            errorText: _controller.emailErrorText.value,
+          ),
+          const SizedBox(height: 10),
+          AppTextFieldWidget(
+            label: 'username',
+            onChanged: (str) => _controller.onChangedUsername(str),
+            errorText: _controller.usernameErrorText.value,
+          ),
+          const SizedBox(height: 10),
+          AppTextFieldWidget(
+            label: 'password',
+            onChanged: (str) => _controller.onChangedPassword(str),
+            errorText: _controller.passwordErrorText.value,
+            obscureText: true,
+          ),
+          const SizedBox(height: 20),
+          AppButtonBigWidget(
+            onPressed: _controller.isRegisterButtonActive.value
+                ? () => _controller.register()
+                : null,
+            title: 'register',
+            isLoading: _controller.isRegisterButtonLoading.value,
+          ),
+        ],
+      ),
     );
   }
 }
