@@ -19,18 +19,19 @@ class LoginScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.all(30),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Spacer(flex: 1),
+              const SizedBox(height: 70),
               const AppFormsTitleWidget(
                 title: 'Login',
-                subtitle: 'Enter your credentials to continue.',
+                subtitle: ['Enter your credentials', ' to continue.'],
               ),
               const Spacer(flex: 2),
               const _TextFieldAreaComponent(),
               const SizedBox(height: 20),
               const AppFormsDividerWidget(),
               const SizedBox(height: 20),
-              const AppFormsExternalAccountsOptionsWidget(),
+              const AppFormsExternalAccountsOptionsWidget(isLogin: true),
               const Spacer(flex: 1),
               AppFormsTextSpanWidget(
                 infoText: "Don't have an account? ",

@@ -6,12 +6,14 @@ class AppButtonExternalAccountWidget extends StatelessWidget {
   final String icon;
   final String text;
   final Function()? onPressed;
+  final bool isLogin;
 
   const AppButtonExternalAccountWidget({
     Key? key,
     required this.icon,
     required this.text,
     required this.onPressed,
+    required this.isLogin,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class AppButtonExternalAccountWidget extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              'Sign in with $text',
+              '${isLogin ? 'Sign in' : 'Continue'} with $text',
               style: AppTextStyles.buttonExternalAccount,
             ),
           ],

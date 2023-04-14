@@ -16,17 +16,19 @@ class AppFormsTextSpanWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        text: infoText,
-        style: AppTextStyles.textSpan,
-        children: [
-          TextSpan(
-            text: clickableText,
-            style: AppTextStyles.textSpanButton,
-            recognizer: TapGestureRecognizer()..onTap = onTap,
-          ),
-        ],
+    return Center(
+      child: RichText(
+        text: TextSpan(
+          text: infoText,
+          style: AppTextStyles.textSpan,
+          children: [
+            TextSpan(
+              text: clickableText,
+              style: AppTextStyles.textSpanButton,
+              recognizer: TapGestureRecognizer()..onTap = onTap,
+            ),
+          ],
+        ),
       ),
     );
   }

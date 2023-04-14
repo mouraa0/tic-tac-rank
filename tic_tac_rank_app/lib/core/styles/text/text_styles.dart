@@ -13,6 +13,12 @@ class AppTextStyles {
     color: Colors.grey,
   );
 
+  static TextStyle pageSubtitleHighlighted = const TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
+  );
+
   static TextStyle details = const TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
