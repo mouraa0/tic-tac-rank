@@ -22,8 +22,8 @@ class AppButtonExternalAccountWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          elevation: 1,
           backgroundColor: Colors.white,
-          elevation: 5,
           shadowColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         ),
