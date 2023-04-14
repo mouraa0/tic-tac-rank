@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:tic_tac_rank_app/core/general/binder/general_binding.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 
 void main() async {
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tic Tac Rank!',
-      initialRoute: '/login',
+      title: 'Tic Tac Rank',
+      initialRoute: '/',
+      initialBinding: GeneralBinding(),
       getPages: AppRouter.returnPages(),
     );
   }
