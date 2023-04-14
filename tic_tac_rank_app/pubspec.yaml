@@ -13,6 +13,8 @@ dependencies:
   web_socket_channel: ^2.3.0
   flutter_svg: ^1.1.6
   supabase_flutter: ^1.7.0
+  flutter_dotenv: ^5.0.2
+  
 
   flutter:
     sdk: flutter
@@ -30,6 +32,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - .env
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
