@@ -1,29 +1,30 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
+import 'package:tic_tac_rank_app/core/supabase/supabase_constants.dart';
 
 class RegisterController extends GetxController {
   String email = '';
-  String username = '';
   String password = '';
 
   final emailErrorText = Rxn<String>();
-  final usernameErrorText = Rxn<String>();
+  // final usernameErrorText = Rxn<String>();
   final passwordErrorText = Rxn<String>();
 
   RxBool isRegisterButtonActive = false.obs;
   RxBool isRegisterButtonLoading = false.obs;
 
+  // void register() {
+  //   supabase.auth.signUp(password: password, email: email);
+  // }
+
   void register() {
     print('email: $email');
-    print('username: $username');
     print('password: $password');
   }
 
   void _verifyRegisterButtonActive() {
     if (email.isNotEmpty &&
         emailErrorText.value == null &&
-        username.isNotEmpty &&
-        usernameErrorText.value == null &&
         password.isNotEmpty &&
         passwordErrorText.value == null) {
       isRegisterButtonActive.value = true;
@@ -51,22 +52,22 @@ class RegisterController extends GetxController {
     emailErrorText.value = null;
   }
 
-  void onChangedUsername(String str) {
-    username = str;
+  // void onChangedUsername(String str) {
+  //   username = str;
 
-    _validateUsername();
-    _verifyRegisterButtonActive();
-  }
+  //   _validateUsername();
+  //   _verifyRegisterButtonActive();
+  // }
 
-  void _validateUsername() {
-    if (username.length > 14) {
-      usernameErrorText.value = 'username must be 14 characters or less.';
+  // void _validateUsername() {
+  //   if (username.length > 14) {
+  //     usernameErrorText.value = 'username must be 14 characters or less.';
 
-      return;
-    }
+  //     return;
+  //   }
 
-    usernameErrorText.value = null;
-  }
+  //   usernameErrorText.value = null;
+  // }
 
   void onChangedPassword(String str) {
     password = str;
