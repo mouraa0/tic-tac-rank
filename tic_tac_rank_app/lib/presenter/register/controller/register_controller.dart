@@ -1,6 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
+import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/supabase/supabase_constants.dart';
+import 'package:tic_tac_rank_app/core/supabase/utils/supabase_account_utils.dart';
 
 class RegisterController extends GetxController {
   String email = '';
@@ -13,13 +15,12 @@ class RegisterController extends GetxController {
   RxBool isRegisterButtonActive = false.obs;
   RxBool isRegisterButtonLoading = false.obs;
 
-  // void register() {
-  //   supabase.auth.signUp(password: password, email: email);
-  // }
+  void register() async {
+    isRegisterButtonLoading.value = true;
+    await SupabaseAccountUtils.register(email: email, password: password);
 
-  void register() {
-    print('email: $email');
-    print('password: $password');
+    Get.offAndToNamed(AppRouter.homeScreen);
+    isRegisterButtonLoading.value = false;
   }
 
   void _verifyRegisterButtonActive() {
