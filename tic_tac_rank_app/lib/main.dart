@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tic Tac Rank!',
-      initialRoute: '/',
+      initialRoute: '/login',
       getPages: AppRouter.returnPages(),
     );
   }
