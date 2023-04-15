@@ -16,32 +16,35 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 70),
-              const AppFormsTitleWidget(
-                title: 'Login',
-                subtitle: ['Enter your credentials', ' to continue.'],
-              ),
-              const Spacer(flex: 2),
-              const _TextFieldAreaComponent(),
-              const SizedBox(height: 20),
-              const AppFormsDividerWidget(),
-              const SizedBox(height: 20),
-              const AppFormsExternalAccountsOptionsWidget(isLogin: true),
-              const Spacer(flex: 1),
-              AppFormsTextSpanWidget(
-                infoText: "Don't have an account? ",
-                clickableText: 'Register now!',
-                onTap: () => Get.offAndToNamed(AppRouter.registerScreen),
-              ),
-            ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 70),
+                const AppFormsTitleWidget(
+                  title: 'Login',
+                  subtitle: ['Enter your credentials', ' to continue.'],
+                ),
+                const Spacer(flex: 2),
+                const _TextFieldAreaComponent(),
+                const SizedBox(height: 20),
+                const AppFormsDividerWidget(),
+                const SizedBox(height: 20),
+                const AppFormsExternalAccountsOptionsWidget(isLogin: true),
+                const Spacer(flex: 1),
+                AppFormsTextSpanWidget(
+                  infoText: "Don't have an account? ",
+                  clickableText: 'Register now!',
+                  onTap: () => Get.offAndToNamed(AppRouter.registerScreen),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -73,10 +76,7 @@ class _TextFieldAreaComponent extends StatelessWidget {
           const SizedBox(height: 20),
           AppButtonBigWidget(
             onPressed: _controller.isButtonActive.value
-                ? () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    _controller.login();
-                  }
+                ? () => _controller.login()
                 : null,
             title: 'login',
             isLoading: _controller.isButtonLoading.value,
