@@ -22,6 +22,7 @@ class AppRouter {
   static String loginScreen = '/login';
   static String registerScreen = '/register';
   static String createUsernameScreen = '/create-username';
+  static String resetPasswordScreen = '/reset-password';
 
   static returnPages() {
     return [
