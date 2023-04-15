@@ -45,8 +45,12 @@ class AppErrorSnackBar extends StatelessWidget {
           const SizedBox(height: 10),
           AppButtonBigWidget(
             title: errorInfo.buttonTitle,
-            onPressed: errorInfo.onButtonPressed ??
-                () => snackbarKey.currentState?.clearSnackBars(),
+            onPressed: () {
+              if (errorInfo.onButtonPressed != null) {
+                errorInfo.onButtonPressed!();
+              }
+              snackbarKey.currentState?.clearSnackBars();
+            },
             isLoading: false,
           ),
         ],
