@@ -30,8 +30,8 @@ class CreateUsernameController extends GetxController {
     snackbarKey.currentState?.showErrorSnackBar(exception: response.exception);
   }
 
-  void loginWithAnotherAccount() {
-    supabase.auth.signOut();
+  void loginWithAnotherAccount() async {
+    await supabase.auth.signOut();
 
     Get.offAndToNamed(AppRouter.loginScreen);
   }

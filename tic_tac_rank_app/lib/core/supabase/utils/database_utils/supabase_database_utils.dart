@@ -18,4 +18,14 @@ class SupabaseDatabaseUtils {
       return SupabaseUtilsResponse(success: false, exception: e);
     }
   }
+
+  static Future<SupabaseUtilsResponse> userHasUsername() async {
+    final data = await supabase
+        .from('profiles')
+        .select()
+        .eq('id', supabase.auth.currentUser!.id)
+        .single() as Map;
+
+    return SupabaseUtilsResponse(success: data['username'] != null);
+  }
 }

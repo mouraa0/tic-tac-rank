@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/core/global/global.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/supabase/utils/account_utils/supabase_account_utils.dart';
+import 'package:tic_tac_rank_app/core/supabase/utils/database_utils/supabase_database_utils.dart';
 import 'package:tic_tac_rank_app/core/utils/forms/forms_utils.dart';
 import 'package:tic_tac_rank_app/core/error/show_error_snack_bar/show_error_snack_bar_extension.dart';
 
@@ -22,12 +23,19 @@ class LoginController extends GetxController {
     final response =
         await SupabaseAccountUtils.login(email: email, password: password);
 
-    if (response.success) {
+    if (!response.success) {
+      isButtonLoading.value = false;
+      snackbarKey.currentState
+          ?.showErrorSnackBar(exception: response.exception);
+    }
+
+    final userHasUsername = await SupabaseDatabaseUtils.userHasUsername();
+
+    if (userHasUsername.success) {
       return Get.offAndToNamed(AppRouter.homeScreen);
     }
 
-    isButtonLoading.value = false;
-    snackbarKey.currentState?.showErrorSnackBar(exception: response.exception);
+    Get.offAndToNamed(AppRouter.createUsernameScreen);
   }
 
   void _verifyButtonActive() {
