@@ -50,4 +50,15 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
+
+  static TextStyle errorSnackBarTitle = const TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle errorSnackBarMsg = TextStyle(
+    color: Colors.red[200],
+    fontSize: 16,
+  );
 }
