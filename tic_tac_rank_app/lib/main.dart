@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:tic_tac_rank_app/core/general/binder/general_binding.dart';
+import 'package:tic_tac_rank_app/core/binder/initial_binding.dart';
 import 'package:tic_tac_rank_app/core/global/global.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Tic Tac Rank',
       initialRoute: '/',
       scaffoldMessengerKey: snackbarKey,
-      initialBinding: GeneralBinding(),
+      initialBinding: InitialBinding(),
       getPages: AppRouter.returnPages(),
     );
   }
