@@ -4,10 +4,13 @@ import 'package:tic_tac_rank_app/core/global/global.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/supabase/utils/account_utils/supabase_account_utils.dart';
 import 'package:tic_tac_rank_app/core/supabase/utils/database_utils/supabase_database_utils.dart';
+import 'package:tic_tac_rank_app/core/user/user_store.dart';
 import 'package:tic_tac_rank_app/core/utils/forms/forms_utils.dart';
 import 'package:tic_tac_rank_app/core/error/show_error_snack_bar/show_error_snack_bar_extension.dart';
 
 class LoginController extends GetxController {
+  final _userStore = Get.find<UserStore>();
+
   String email = '';
   String password = '';
 
@@ -32,6 +35,8 @@ class LoginController extends GetxController {
     final userHasUsername = await SupabaseDatabaseUtils.userHasUsername();
 
     if (userHasUsername.success) {
+      await _userStore.populateUser();
+
       return Get.offAndToNamed(AppRouter.homeScreen);
     }
 
