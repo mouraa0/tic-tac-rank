@@ -3,10 +3,12 @@ import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 
 class AppFormsTitleWidget extends StatelessWidget {
   final List<String> subtitle;
+  final bool showLogo;
 
   const AppFormsTitleWidget({
     Key? key,
     required this.subtitle,
+    this.showLogo = true,
   }) : super(key: key);
 
   @override
@@ -14,8 +16,10 @@ class AppFormsTitleWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('TicTacRank', style: AppTextStyles.pageTitle),
-        const SizedBox(height: 10),
+        if (showLogo) ...[
+          Text('TicTacRank', style: AppTextStyles.pageTitle),
+          const SizedBox(height: 10),
+        ],
         RichText(
           text: TextSpan(
             children: [
@@ -30,14 +34,6 @@ class AppFormsTitleWidget extends StatelessWidget {
             ],
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 30),
-        //   child: Text(
-        //     subtitle,
-        //     textAlign: TextAlign.center,
-        //     style: AppTextStyles.pageSubtitle,
-        //   ),
-        // ),
       ],
     );
   }

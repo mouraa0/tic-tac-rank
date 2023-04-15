@@ -17,38 +17,42 @@ class CreateUsernameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 70),
-              const AppFormsTitleWidget(
-                subtitle: [
-                  "Create a username",
-                  " so everyone knows who you are.",
-                ],
-              ),
-              const SizedBox(height: 20),
-              const AppFormsTitleWidget(
-                subtitle: [
-                  "",
-                  "Must be between 3 and 14 characters long, and you can change it later.",
-                ],
-              ),
-              const Spacer(flex: 2),
-              const _TextFieldAreaComponent(),
-              const SizedBox(height: 20),
-              const Spacer(flex: 1),
-              AppFormsTextSpanWidget(
-                infoText: "",
-                clickableText: 'Login with another account',
-                onTap: () => Get.offAndToNamed(AppRouter.loginScreen),
-              ),
-            ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 70),
+                const AppFormsTitleWidget(
+                  subtitle: [
+                    "Create a username",
+                    " so everyone knows who you are.",
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const AppFormsTitleWidget(
+                  showLogo: false,
+                  subtitle: [
+                    "",
+                    "Must be between 3 and 14 characters long, and you can change it later.",
+                  ],
+                ),
+                const Spacer(flex: 2),
+                const _TextFieldAreaComponent(),
+                const SizedBox(height: 20),
+                const Spacer(flex: 1),
+                AppFormsTextSpanWidget(
+                  infoText: "",
+                  clickableText: 'Login with another account',
+                  onTap: () => Get.offAndToNamed(AppRouter.loginScreen),
+                ),
+              ],
+            ),
           ),
         ),
       ),
