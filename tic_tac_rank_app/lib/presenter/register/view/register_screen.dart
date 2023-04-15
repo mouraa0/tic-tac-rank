@@ -79,11 +79,14 @@ class _TextFieldAreaComponent extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           AppButtonBigWidget(
-            onPressed: _controller.isRegisterButtonActive.value
-                ? () => _controller.register()
+            onPressed: _controller.isButtonActive.value
+                ? () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    _controller.register();
+                  }
                 : null,
             title: 'register',
-            isLoading: _controller.isRegisterButtonLoading.value,
+            isLoading: _controller.isButtonLoading.value,
           ),
         ],
       ),

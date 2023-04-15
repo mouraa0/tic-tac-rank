@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
+import 'package:tic_tac_rank_app/core/widgets/loading/loading_button.dart';
 
 class AppButtonBigWidget extends StatelessWidget {
   final String title;
@@ -27,7 +28,7 @@ class AppButtonBigWidget extends StatelessWidget {
           ),
         ),
         child: isLoading
-            ? const CircularProgressIndicator(color: Colors.white)
+            ? const AppLoadingForButtonWidget()
             : Text(title, style: AppTextStyles.buttonBig),
       ),
     );

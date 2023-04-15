@@ -8,10 +8,10 @@ class SupabaseAccountUtils {
     await supabase.auth.signUp(password: password, email: email);
   }
 
-  // static Future login({
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   await supabase.auth.signInWithPassword(password: password, email: email);
-  // }
+  static Future login({
+    required String email,
+    required String password,
+  }) async {
+    await supabase.auth.signInWithPassword(password: password, email: email);
+  }
 }

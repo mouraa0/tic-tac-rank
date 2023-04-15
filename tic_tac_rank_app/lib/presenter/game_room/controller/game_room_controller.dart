@@ -43,8 +43,6 @@ class GameRoomController extends GetxController {
   }
 
   void _handleNewMessage(String msg) {
-    print('msg: $msg');
-
     switch (msg) {
       case 'All players connected':
         channel.value?.sink.add(
