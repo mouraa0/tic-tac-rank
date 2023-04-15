@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tic_tac_rank_app/core/general/controller/general_controller.dart';
+import 'package:tic_tac_rank_app/core/controller/general_controller.dart';
 import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {

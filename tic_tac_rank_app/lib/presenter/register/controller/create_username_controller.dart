@@ -4,10 +4,13 @@ import 'package:tic_tac_rank_app/core/global/global.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/supabase/supabase_constants.dart';
 import 'package:tic_tac_rank_app/core/supabase/utils/database_utils/supabase_database_utils.dart';
+import 'package:tic_tac_rank_app/core/user/user_store.dart';
 import 'package:tic_tac_rank_app/core/utils/forms/forms_utils.dart';
 import 'package:tic_tac_rank_app/core/error/show_error_snack_bar/show_error_snack_bar_extension.dart';
 
 class CreateUsernameController extends GetxController {
+  final _userStore = Get.find<UserStore>();
+
   String username = '';
 
   final usernameErrorText = Rxn<String>();
@@ -23,6 +26,8 @@ class CreateUsernameController extends GetxController {
         await SupabaseDatabaseUtils.editUsername(newUsername: username);
 
     if (response.success) {
+      await _userStore.populateUser();
+
       return Get.offAndToNamed(AppRouter.homeScreen);
     }
 
