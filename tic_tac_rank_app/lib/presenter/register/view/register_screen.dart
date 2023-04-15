@@ -26,7 +26,6 @@ class RegisterScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 70),
               const AppFormsTitleWidget(
-                title: 'Register',
                 subtitle: ["Create a new account", " to access the app."],
               ),
               const Spacer(flex: 2),

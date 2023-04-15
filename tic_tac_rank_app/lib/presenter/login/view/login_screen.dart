@@ -28,7 +28,6 @@ class LoginScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 70),
                 const AppFormsTitleWidget(
-                  title: 'Login',
                   subtitle: ['Enter your credentials', ' to continue.'],
                 ),
                 const Spacer(flex: 2),

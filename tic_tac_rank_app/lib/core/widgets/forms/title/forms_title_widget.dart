@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_rank_app/core/styles/text/text_styles.dart';
 
 class AppFormsTitleWidget extends StatelessWidget {
-  final String title;
   final List<String> subtitle;
 
   const AppFormsTitleWidget({
     Key? key,
-    required this.title,
     required this.subtitle,
   }) : super(key: key);
 
