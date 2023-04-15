@@ -30,4 +30,25 @@ class FormsUtils {
 
     errorText.value = null;
   }
+
+  static void validateUsername({
+    required String username,
+    required Rxn<String> errorText,
+  }) {
+    RegExp usernameRegex = RegExp(r'^[a-zA-Z0-9]$');
+
+    if (username.length < 3 || username.length > 14) {
+      errorText.value = 'Must be between 3 and 14 characters long';
+
+      return;
+    }
+
+    if (usernameRegex.hasMatch(username)) {
+      errorText.value = 'Only letters and numbers allowed';
+
+      return;
+    }
+
+    errorText.value = null;
+  }
 }
