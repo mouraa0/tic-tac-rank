@@ -80,6 +80,12 @@ class _TextFieldAreaComponent extends StatelessWidget {
             title: 'login',
             isLoading: _controller.isButtonLoading.value,
           ),
+          const SizedBox(height: 14),
+          AppFormsTextSpanWidget(
+            infoText: '',
+            clickableText: 'Reset password',
+            onTap: () => Get.offAndToNamed(AppRouter.registerScreen),
+          ),
         ],
       ),
     );
