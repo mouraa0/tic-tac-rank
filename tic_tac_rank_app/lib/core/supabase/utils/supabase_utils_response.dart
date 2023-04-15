@@ -1,8 +1,8 @@
-class SupabaseAccountUtilsResponse {
+class SupabaseUtilsResponse {
   final bool success;
   final dynamic exception;
 
-  SupabaseAccountUtilsResponse({
+  SupabaseUtilsResponse({
     required this.success,
     this.exception,
   });

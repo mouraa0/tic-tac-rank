@@ -64,12 +64,6 @@ class _TextFieldAreaComponent extends StatelessWidget {
             errorText: _controller.emailErrorText.value,
           ),
           const SizedBox(height: 10),
-          // AppTextFieldWidget(
-          //   label: 'username',
-          //   onChanged: (str) => _controller.onChangedUsername(str),
-          //   errorText: _controller.usernameErrorText.value,
-          // ),
-          const SizedBox(height: 10),
           AppTextFieldWidget(
             label: 'password',
             onChanged: (str) => _controller.onChangedPassword(str),
