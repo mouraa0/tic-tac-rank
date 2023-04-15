@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/data/matchmaking/models/matchmaking_message_model.dart';
@@ -40,9 +40,8 @@ class MatchmakingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    const String url = !kIsWeb
-        ? 'ws://10.0.2.2:8000/matchmaking/122'
-        : 'ws://localhost:8000/matchmaking/121';
+    final String url =
+        '${dotenv.env['WEBSOCKET_ENDPOINT']!}/matchmaking/'; // TODO: add user code;
 
     channel = WebSocketChannel.connect(Uri.parse(url));
 

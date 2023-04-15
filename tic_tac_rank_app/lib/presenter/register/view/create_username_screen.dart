@@ -8,7 +8,6 @@ import 'package:tic_tac_rank_app/core/widgets/forms/text_span/forms_text_span_wi
 import 'package:tic_tac_rank_app/core/widgets/forms/title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
 import 'package:tic_tac_rank_app/presenter/register/controller/create_username_controller.dart';
-import 'package:tic_tac_rank_app/presenter/register/controller/register_controller.dart';
 
 final _controller = Get.find<CreateUsernameController>();
 
