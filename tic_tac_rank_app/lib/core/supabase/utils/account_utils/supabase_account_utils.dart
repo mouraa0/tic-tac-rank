@@ -28,4 +28,16 @@ class SupabaseAccountUtils {
       return SupabaseUtilsResponse(success: false, exception: e);
     }
   }
+
+  static Future<SupabaseUtilsResponse> resetPassword({
+    required String email,
+  }) async {
+    try {
+      await supabase.auth.resetPasswordForEmail(email);
+
+      return SupabaseUtilsResponse(success: true);
+    } catch (e) {
+      return SupabaseUtilsResponse(success: false, exception: e);
+    }
+  }
 }

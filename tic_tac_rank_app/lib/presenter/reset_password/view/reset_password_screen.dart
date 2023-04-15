@@ -7,12 +7,12 @@ import 'package:tic_tac_rank_app/core/widgets/forms/external_accounts_options/fo
 import 'package:tic_tac_rank_app/core/widgets/forms/text_span/forms_text_span_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/forms/title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
-import 'package:tic_tac_rank_app/presenter/login/controller/login_controller.dart';
+import 'package:tic_tac_rank_app/presenter/reset_password/controller/reset_password_controller.dart';
 
-final _controller = Get.find<LoginController>();
+final _controller = Get.find<ResetPasswordController>();
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,13 @@ class LoginScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 70),
                 const AppFormsTitleWidget(
-                  subtitle: ['Enter your credentials', ' to continue.'],
+                  subtitle: [
+                    "Type your registered email",
+                    " to receive instructions."
+                  ],
                 ),
                 const Spacer(flex: 2),
                 const _TextFieldAreaComponent(),
-                const SizedBox(height: 20),
-                const AppFormsDividerWidget(),
-                const SizedBox(height: 20),
-                const AppFormsExternalAccountsOptionsWidget(isLogin: true),
                 const Spacer(flex: 1),
                 AppFormsTextSpanWidget(
                   infoText: "Don't have an account? ",
@@ -66,26 +65,14 @@ class _TextFieldAreaComponent extends StatelessWidget {
             onChanged: (str) => _controller.onChangedEmail(str),
             errorText: _controller.emailErrorText.value,
           ),
-          const SizedBox(height: 10),
-          AppTextFieldWidget(
-            label: 'password',
-            onChanged: (str) => _controller.onChangedPassword(str),
-            obscureText: true,
-          ),
           const SizedBox(height: 20),
           AppButtonBigWidget(
             onPressed: _controller.isButtonActive.value
-                ? () => _controller.login()
+                ? () => _controller.resetPassword()
                 : null,
-            title: 'login',
+            title: 'register',
             isLoading: _controller.isButtonLoading.value,
           ),
-          // const SizedBox(height: 14),
-          // AppFormsTextSpanWidget(
-          //   infoText: '',
-          //   clickableText: 'Reset password',
-          //   onTap: () => Get.offAndToNamed(AppRouter.resetPasswordScreen),
-          // ),
         ],
       ),
     );

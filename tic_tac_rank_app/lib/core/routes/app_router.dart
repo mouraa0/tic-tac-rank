@@ -11,6 +11,8 @@ import 'package:tic_tac_rank_app/presenter/register/binder/create_username_bindi
 import 'package:tic_tac_rank_app/presenter/register/binder/register_binding.dart';
 import 'package:tic_tac_rank_app/presenter/register/view/create_username_screen.dart';
 import 'package:tic_tac_rank_app/presenter/register/view/register_screen.dart';
+import 'package:tic_tac_rank_app/presenter/reset_password/binder/reset_password_binding.dart';
+import 'package:tic_tac_rank_app/presenter/reset_password/view/reset_password_screen.dart';
 import 'package:tic_tac_rank_app/presenter/splash/view/splash_screen.dart';
 
 class AppRouter {
@@ -62,6 +64,12 @@ class AppRouter {
         name: createUsernameScreen,
         page: () => const CreateUsernameScreen(),
         binding: CreateUsernameBinding(),
+        maintainState: false,
+      ),
+      GetPage(
+        name: resetPasswordScreen,
+        page: () => const ResetPasswordScreen(),
+        binding: ResetPasswordBinding(),
         maintainState: false,
       ),
     ];
