@@ -4,11 +4,14 @@ import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
+import 'package:tic_tac_rank_app/core/user/user_store.dart';
 import 'package:tic_tac_rank_app/data/matchmaking/models/matchmaking_message_model.dart';
 import 'package:tic_tac_rank_app/domain/matchmaking/entities/matchmaking_message_entity.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class MatchmakingController extends GetxController {
+  final _userStore = Get.find<UserStore>();
+
   late Stream stream;
   late WebSocketChannel channel;
 
@@ -41,7 +44,7 @@ class MatchmakingController extends GetxController {
   void onInit() {
     super.onInit();
     final String url =
-        '${dotenv.env['WEBSOCKET_ENDPOINT']!}/matchmaking/'; // TODO: add user code;
+        '${dotenv.env['WEBSOCKET_ENDPOINT']!}/matchmaking/${_userStore.user!.publicId}';
 
     channel = WebSocketChannel.connect(Uri.parse(url));
 

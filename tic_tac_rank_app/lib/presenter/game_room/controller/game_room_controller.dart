@@ -1,12 +1,15 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:tic_tac_rank_app/core/user/user_store.dart';
 import 'package:tic_tac_rank_app/data/game_room/models/game_room_message_model.dart';
 import 'package:tic_tac_rank_app/domain/game_room/game_room_message_entity.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class GameRoomController extends GetxController {
+  final _userStore = Get.find<UserStore>();
+
   final channel = Rxn<WebSocketChannel>();
 
   late GameRoomMessageEntity msgEntity;
@@ -86,9 +89,8 @@ class GameRoomController extends GetxController {
   void onInit() {
     super.onInit();
     final String roomId = Get.parameters['roomId']!;
-    const String url = !kIsWeb
-        ? 'ws://10.0.2.2:8000/match/122'
-        : 'ws://localhost:8000/match/121';
+    final String url =
+        '${dotenv.env['WEBSOCKET_ENDPOINT']!}/match/${_userStore.user!.publicId}';
 
     channel.value = WebSocketChannel.connect(
       Uri.parse('$url/$roomId'),
