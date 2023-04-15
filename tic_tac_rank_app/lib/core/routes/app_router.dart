@@ -7,7 +7,9 @@ import 'package:tic_tac_rank_app/presenter/login/binder/login_binding.dart';
 import 'package:tic_tac_rank_app/presenter/login/view/login_screen.dart';
 import 'package:tic_tac_rank_app/presenter/matchmaking/binder/matchmaking_bindings.dart';
 import 'package:tic_tac_rank_app/presenter/matchmaking/view/matchmaking_screen.dart';
+import 'package:tic_tac_rank_app/presenter/register/binder/create_username_binding.dart';
 import 'package:tic_tac_rank_app/presenter/register/binder/register_binding.dart';
+import 'package:tic_tac_rank_app/presenter/register/view/create_username_screen.dart';
 import 'package:tic_tac_rank_app/presenter/register/view/register_screen.dart';
 import 'package:tic_tac_rank_app/presenter/splash/view/splash_screen.dart';
 
@@ -19,6 +21,7 @@ class AppRouter {
   static String matchConfigRoute = '$matchScreen/:roomId';
   static String loginScreen = '/login';
   static String registerScreen = '/register';
+  static String createUsernameScreen = '/create-username';
 
   static returnPages() {
     return [
@@ -30,11 +33,13 @@ class AppRouter {
         name: loginScreen,
         page: () => const LoginScreen(),
         binding: LoginBinding(),
+        maintainState: false,
       ),
       GetPage(
         name: registerScreen,
         page: () => const RegisterScreen(),
         binding: RegisterBinding(),
+        maintainState: false,
       ),
       GetPage(
         name: homeScreen,
@@ -44,11 +49,19 @@ class AppRouter {
         name: matchmakingScreen,
         page: () => const MatchmakingScreen(),
         binding: MatchmakingBinding(),
+        maintainState: false,
       ),
       GetPage(
         name: matchConfigRoute,
         page: () => const GameRoomScreen(),
         binding: GameRoomBinding(),
+        maintainState: false,
+      ),
+      GetPage(
+        name: createUsernameScreen,
+        page: () => const CreateUsernameScreen(),
+        binding: CreateUsernameBinding(),
+        maintainState: false,
       ),
     ];
   }

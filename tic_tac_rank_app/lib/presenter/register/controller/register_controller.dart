@@ -9,9 +9,9 @@ import 'package:tic_tac_rank_app/core/error/show_error_snack_bar/show_error_snac
 class RegisterController extends GetxController {
   String email = '';
   String password = '';
+  String username = '';
 
   final emailErrorText = Rxn<String>();
-  // final usernameErrorText = Rxn<String>();
   final passwordErrorText = Rxn<String>();
 
   RxBool isButtonActive = false.obs;
@@ -23,15 +23,16 @@ class RegisterController extends GetxController {
 
     final response =
         await SupabaseAccountUtils.register(email: email, password: password);
+
     if (response.success) {
-      return Get.offAndToNamed(AppRouter.homeScreen);
+      return Get.offAndToNamed(AppRouter.createUsernameScreen);
     }
 
     isButtonLoading.value = false;
     snackbarKey.currentState?.showErrorSnackBar(exception: response.exception);
   }
 
-  void _verifyRegisterButtonActive() {
+  void _verifyButtonActive() {
     //TODO: improve shitty logic;
     if (email.isNotEmpty &&
         emailErrorText.value == null &&
@@ -49,13 +50,13 @@ class RegisterController extends GetxController {
     email = str;
 
     FormsUtils.validateEmail(email: email, errorText: emailErrorText);
-    _verifyRegisterButtonActive();
+    _verifyButtonActive();
   }
 
   void onChangedPassword(String str) {
     password = str;
 
     FormsUtils.validatePassword(psw: password, errorText: passwordErrorText);
-    _verifyRegisterButtonActive();
+    _verifyButtonActive();
   }
 }
