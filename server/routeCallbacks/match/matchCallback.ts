@@ -52,6 +52,8 @@ export const matchCb = (ctx: RouterContext<"/match/:userId/:roomId">) => {
       const answer = verifyIsGameEnded(roomData.board);
 
       if (answer.ended) {
+        delete gameRoomsMap[roomId];
+
         return roomData.socketsArr.forEach((userSocket: WebSocket) =>
           userSocket.send(
             JSON.stringify({
