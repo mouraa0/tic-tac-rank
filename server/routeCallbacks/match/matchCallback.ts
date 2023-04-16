@@ -28,7 +28,7 @@ export const matchCb = (ctx: RouterContext<"/match/:userId/:roomId">) => {
   socket.onmessage = (event: MessageEvent) => {
     const data: GameRoomMessageReceived = JSON.parse(event.data);
 
-    console.log(data);
+    console.log(data.msg);
 
     if (data.msg === "Ready") {
       console.log(roomData.playerTurn);
