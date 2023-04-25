@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tic_tac_rank_app/presenter/game_room/controller/game_room_controller.dart';
 
-final _controller = Get.find<GameRoomController>();
-
 class BoardComponent extends StatelessWidget {
   const BoardComponent({
     Key? key,
@@ -60,16 +58,20 @@ class _SingleBoxComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<GameRoomController>();
+
     return Obx(
       () => InkWell(
-        onTap: _controller.isMyTurn.value
-            ? () => _controller.makePlay(rowIndex: rowIndex, colIndex: colIndex)
-            : () {},
+        onTap: controller.isMyTurn.value
+            ? () => controller.makePlay(rowIndex: rowIndex, colIndex: colIndex)
+            : () {
+                print('not working >(');
+              },
         child: SizedBox(
           width: MediaQuery.of(context).size.width / 3.2,
           height: 50,
           child: Center(
-            child: Text(_controller.board?[colIndex][rowIndex] ?? ''),
+            child: Text(controller.board?[colIndex][rowIndex] ?? ''),
           ),
         ),
       ),

@@ -65,6 +65,12 @@ class LoginController extends GetxController {
     _verifyButtonActive();
   }
 
+  @override
+  void onClose() {
+    isButtonLoading.value = false;
+    super.onClose();
+  }
+
   void onChangedPassword(String str) {
     password = str;
 

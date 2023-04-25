@@ -29,7 +29,11 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 20),
               AppButton(
                 title: 'Logoff',
-                onPressed: () => supabase.auth.signOut(),
+                onPressed: () {
+                  supabase.auth.signOut();
+
+                  Get.offAllNamed(AppRouter.loginScreen);
+                },
               ),
             ],
           ),

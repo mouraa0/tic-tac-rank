@@ -56,6 +56,7 @@ class GameRoomController extends GetxController {
           }),
         );
         myPlayerToken = msgEntity.player!;
+
         return;
 
       case 'Game Live':
@@ -80,6 +81,13 @@ class GameRoomController extends GetxController {
 
   @override
   void onClose() {
+    // isMyTurn.value = false;
+
+    // actualPlayerToken.value = '';
+
+    // myPlayerToken.value = '';
+    // isGameEnded.value = false;
+
     channel.value?.sink.close();
     board = null;
     super.onClose();

@@ -52,6 +52,12 @@ class MatchmakingController extends GetxController {
   }
 
   @override
+  void onClose() {
+    super.onClose();
+    Get.delete<MatchmakingController>();
+  }
+
+  @override
   void dispose() {
     channel.sink.close();
     super.dispose();

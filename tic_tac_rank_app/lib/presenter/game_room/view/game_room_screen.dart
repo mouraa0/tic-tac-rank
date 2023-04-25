@@ -21,15 +21,28 @@ class GameRoomScreen extends StatelessWidget {
           child: Column(
             children: [
               const BoardComponent(),
-              const SizedBox(height: 100),
+              SizedBox(
+                height: 50,
+                child: Visibility(
+                  visible: controller.isMyTurn.value,
+                  child: const Text('Your turn'),
+                ),
+              ),
+              const SizedBox(height: 50),
               Text(controller.actualPlayerToken.value),
+              const SizedBox(height: 50),
+              Visibility(
+                visible: controller.isGameEnded.value,
+                child: const Text('Game over'),
+              ),
+              const SizedBox(height: 50),
               Visibility(
                 visible: controller.isGameEnded.value,
                 child: AppButton(
                   title: 'Home',
                   onPressed: () => Get.offAndToNamed(AppRouter.homeScreen),
                 ),
-              )
+              ),
             ],
           ),
         ),
