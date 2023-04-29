@@ -4,8 +4,8 @@ import {
   GameRoom,
   GameRoomMessageReceived,
 } from "../../interfaces/interfaces.ts";
-import { gameConnectionHandler } from "./handler/matchHandler.ts";
 import { verifyIsGameEnded } from "./functions/gameFunctions.ts";
+import { Game } from "./classes/game/game.ts";
 
 export const matchCb = (ctx: RouterContext<"/match/:userId/:roomId">) => {
   const userId: string = ctx.params.userId;
@@ -15,14 +15,16 @@ export const matchCb = (ctx: RouterContext<"/match/:userId/:roomId">) => {
 
   const socket = ctx.upgrade();
 
+  const game = new Game({
+    userId: userId,
+    userSocket: socket,
+    roomData: roomData,
+  });
+
   socket.onopen = () => {
     console.log("Game Room Connected");
 
-    gameConnectionHandler({
-      roomData: roomData,
-      socket: socket,
-      userId: userId,
-    });
+    game.handleNewConnection();
   };
 
   socket.onmessage = (event: MessageEvent) => {
