@@ -27,9 +27,7 @@ export const matchmakingHandler = (
 const joinFirstPossibleRoom = (
   { socket, waitingRoomsArr, gameRoomsMap, userId }: MatchmakingHandlerParams,
 ) => {
-  const opponentWaitingRoom: WaitingRoom = waitingRoomsArr[0];
-
-  waitingRoomsArr.shift();
+  const opponentWaitingRoom: WaitingRoom = waitingRoomsArr.shift()!;
 
   gameRoomsMap[opponentWaitingRoom.roomId] = {
     board: Array.from(

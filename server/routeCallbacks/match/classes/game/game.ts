@@ -71,8 +71,8 @@ export class Game {
   ) => {
     console.log(msgObjectP1);
     console.log(msgObjectP2);
-    this.roomData.player1Socket?.send(JSON.stringify({ msgObjectP1 }));
-    this.roomData.player2Socket?.send(JSON.stringify({ msgObjectP2 }));
+    this.roomData.player1Socket?.send(JSON.stringify(msgObjectP1));
+    this.roomData.player2Socket?.send(JSON.stringify(msgObjectP2));
   };
 }
 
