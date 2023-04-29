@@ -52,6 +52,3 @@ export const gameConnectionHandler = (
 
   roomData.socketsArr.push(socket);
 };
-
-export const matchHandler = () => {
-};
