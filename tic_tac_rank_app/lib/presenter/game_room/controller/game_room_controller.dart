@@ -74,6 +74,7 @@ class GameRoomController extends GetxController {
   }
 
   void _handleGameEnded() {
+    board = msgEntity.board!.obs;
     channel.value?.sink.close();
     isMyTurn.value = false;
     isGameEnded.value = true;
