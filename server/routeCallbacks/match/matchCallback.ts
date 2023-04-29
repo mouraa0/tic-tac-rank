@@ -13,6 +13,10 @@ export const matchCb = (ctx: RouterContext<"/match/:userId/:roomId">) => {
 
   const roomData: GameRoom = gameRoomsMap[roomId];
 
+  console.log("player1id:" + roomData.player1Id);
+  console.log("player2id:" + roomData.player2Id);
+  console.log("roomId:" + roomData.roomId);
+
   const socket = ctx.upgrade();
 
   const game = new Game({
