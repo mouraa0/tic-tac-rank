@@ -29,6 +29,12 @@ class GeneralController extends GetxController {
     );
   }
 
+  void logoff() {
+    supabase.auth.signOut();
+
+    Get.offAllNamed(AppRouter.loginScreen);
+  }
+
   @override
   void onInit() {
     _initHandler();
