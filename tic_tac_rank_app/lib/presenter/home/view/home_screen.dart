@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
-import 'package:tic_tac_rank_app/core/routes/app_router.dart';
-import 'package:tic_tac_rank_app/core/supabase/supabase_constants.dart';
 import 'package:tic_tac_rank_app/core/user/user_store.dart';
-import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_widget.dart';
+import 'package:tic_tac_rank_app/core/widgets/scaffold/scaffold.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,29 +11,40 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userStore = Get.find<UserStore>();
 
-    return Scaffold(
-      body: Center(
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(userStore.user!.username),
-              AppButton(
-                title: 'Find Match',
-                onPressed: () => Get.toNamed(AppRouter.matchmakingScreen),
-              ),
-              const SizedBox(height: 20),
-              AppButton(
-                title: 'Logoff',
-                onPressed: () {
-                  supabase.auth.signOut();
+    return AppScaffold(
+      showFloatingButton: true,
+      pageTitle: ['Welcome, ', userStore.user!.username],
+      body: const [],
+    );
+  }
+}
 
-                  Get.offAllNamed(AppRouter.loginScreen);
-                },
-              ),
-            ],
+class CardNews extends StatelessWidget {
+  const CardNews({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 80,
+      height: 80,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: const DecorationImage(
+              image: AssetImage('assets/images/trophy.jpg'),
+              fit: BoxFit.cover,
+              opacity: 0.3,
+            ),
+          ),
+          child: Center(
+            child: Text('New winner!'),
           ),
         ),
       ),

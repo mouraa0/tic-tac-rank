@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/conditional_parent/conditiona_parent.dart';
 import 'package:tic_tac_rank_app/core/widgets/title/title_widget.dart';
@@ -25,7 +27,7 @@ class AppScaffold extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: AppButton(
                 title: 'Play',
-                onPressed: () {},
+                onPressed: () => Get.toNamed(AppRouter.matchmakingScreen),
               ),
             )
           : null,

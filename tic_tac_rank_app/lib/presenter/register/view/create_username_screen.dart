@@ -5,7 +5,7 @@ import 'package:get/route_manager.dart';
 import 'package:tic_tac_rank_app/core/routes/app_router.dart';
 import 'package:tic_tac_rank_app/core/widgets/buttons/app_button_big_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/forms/text_span/forms_text_span_widget.dart';
-import 'package:tic_tac_rank_app/core/widgets/forms/title/forms_title_widget.dart';
+import 'package:tic_tac_rank_app/core/widgets/title/forms_title_widget.dart';
 import 'package:tic_tac_rank_app/core/widgets/textfield/text_field_widget.dart';
 import 'package:tic_tac_rank_app/presenter/register/controller/create_username_controller.dart';
 
